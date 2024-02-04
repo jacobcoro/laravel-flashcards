@@ -1,6 +1,10 @@
 <div>
-    <button wire:click="createFlashcard" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Create Flashcard
-    </button>
-    <livewire:flashcard-list />
+    <h1>Flashcard App</h1>
+    <h3>create flashcard</h3>
+    <form wire:submit.prevent="createFlashcard">
+        <input type="text" wire:model="newQuestion" placeholder="Question">
+        <input type="text" wire:model="newAnswer" placeholder="Answer">
+        <button>Create</button>
+    </form>
+    <livewire:flashcard-list :flashcards="$flashcards" />
 </div>

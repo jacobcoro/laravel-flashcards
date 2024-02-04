@@ -23,4 +23,6 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+Route::get('flashcards/{userId}', 'App\Http\Controllers\FlashcardController@index');
+
+require __DIR__ . '/auth.php';
