@@ -22,7 +22,7 @@
         <livewire:welcome.navigation />
         @endif
 
-        <livewire:flashcard-list />
+        <livewire:flashcard-app />
 
     </div>
 </body>
