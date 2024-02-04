@@ -10,6 +10,7 @@
 </head>
 <body class="antialiased">
     @livewire('landing-page')
-    
+    @livewire('login-signup-form')
+
 </body>
 </html>
