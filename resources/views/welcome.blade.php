@@ -22,10 +22,8 @@
         <livewire:welcome.navigation />
         @endif
 
-        <livewire:flashcard question="What's the difference between `fn` and `function` in PHP lambdas?"
-            answer="`fn` can only be one line and cannot use brackets or `return`. `function` must use brackets and the `return` keyword"
-            id="1" />
-        >
+        <livewire:flashcard-list />
+
     </div>
 </body>
 
