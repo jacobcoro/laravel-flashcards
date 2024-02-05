@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateFlashcardRequest;
 use App\Models\Flashcard;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Log;
 
 class FlashcardController extends Controller
 {
@@ -37,10 +38,10 @@ class FlashcardController extends Controller
 
     public function update(int $id, string $question, string $answer): void
     {
-        $flashcard = Flashcard::find($id);
-        $flashcard->question = $question;
-        $flashcard->answer = $answer;
-        $flashcard->save();
+        Flashcard::where('id', $id)->update([
+            'question' => $question,
+            'answer' => $answer
+        ]);
     }
 
     public function destroy(int $id): void

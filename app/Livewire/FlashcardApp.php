@@ -39,12 +39,8 @@ class FlashcardApp extends Component
 
     public bool $loggedIn = false;
 
-    #[On('refresh-flashcards')]
-    public function flashcardCreated(): void
-    {
-        $this->refreshFlashcards();
-    }
 
+    #[On('refresh-flashcards')]
     public function refreshFlashcards(): void
     {
         $controller = new FlashcardController();
