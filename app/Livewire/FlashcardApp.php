@@ -6,43 +6,61 @@ use App\Http\Controllers\FlashcardController;
 use Livewire\Component;
 use App\Models\Flashcard;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\On;
 
 class FlashcardApp extends Component
 {
-    public string $newQuestion = '';
-    public string $newAnswer = '';
+    public $defaultFlashcards  = [
+        [
+            'id' => 1,
+            'question' => "What's the difference between `fn` and `function` in PHP lambdas?", 'answer' => "`fn` can only be one line and cannot use brackets or `return`. `function` must use brackets and the `return` keyword"
+        ],
+        [
+            'id' => 2,
+            'question' => 'What is 2 + 2?',
+            'answer' => '4',
+        ],
+        [
+            'id' => 3,
+            'question' => 'What is 3 + 3?',
+            'answer' => '6',
+        ],
+        [
+            'id' => 4,
+            'question' => 'What is 4 + 4?',
+            'answer' => '8',
+        ],
+    ];
+
 
     /**
      * @var public Illuminate\Support\Collection $flashcards;
-
      */
     public Collection $flashcards;
 
     public bool $loggedIn = false;
 
-    protected FlashcardController $flashcard;
-
-    public function __construct()
+    #[On('flashcard-created')]
+    public function flashcardCreated(): void
     {
-        $this->flashcard = new FlashcardController();
+        $this->refreshFlashcards();
     }
 
-    public function createFlashcard(): void
+    public function refreshFlashcards(): void
     {
-        $this->flashcard->store(auth()->id(), $this->newQuestion, $this->newAnswer);
-        $this->getAllFlashcards();
-    }
-
-    public function getAllFlashcards(): void
-    {
-        $this->flashcards = $this->flashcard->index(auth()->id());
+        $controller =  new FlashcardController();
+        $this->flashcards = $controller->index(auth()->id());
     }
 
     // fetch all flashcards on mount
     public function mount(): void
     {
-        $this->getAllFlashcards();
         $this->loggedIn = auth()->id() !== null;
+        if ($this->loggedIn) {
+            $this->refreshFlashcards();
+        } else {
+            $this->flashcards = collect($this->defaultFlashcards);
+        }
     }
 
     public function render()

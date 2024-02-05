@@ -35,13 +35,16 @@ class FlashcardController extends Controller
         ]);
     }
 
-    public function update(): void
+    public function update(int $id, string $question, string $answer): void
     {
-        //
+        $flashcard = Flashcard::find($id);
+        $flashcard->question = $question;
+        $flashcard->answer = $answer;
+        $flashcard->save();
     }
 
-    public function destroy(): void
+    public function destroy(int $id): void
     {
-        //
+        Flashcard::destroy($id);
     }
 }
