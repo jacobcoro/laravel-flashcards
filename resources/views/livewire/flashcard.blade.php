@@ -1,4 +1,8 @@
-<div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 w-96">
+<div class="relative bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 w-96">
+    @auth
+    <button class="absolute top-2 right-2 bg-slate-400 rounded px-1 font-black" wire:click="deleteFlashcard">X</button>
+    @endauth
+
     <div class="flex flex-col my-6 space-y-4">
         <div class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $question }}</div>
         @if($showAnswer)

@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Http\Controllers\FlashcardController;
 use Livewire\Component;
-use App\Models\Flashcard;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 
@@ -48,7 +47,7 @@ class FlashcardApp extends Component
 
     public function refreshFlashcards(): void
     {
-        $controller =  new FlashcardController();
+        $controller = new FlashcardController();
         $this->flashcards = $controller->index(auth()->id());
     }
 

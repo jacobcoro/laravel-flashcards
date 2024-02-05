@@ -18,7 +18,7 @@ class FlashcardController extends Controller
     public function index(int|null $userId)
     {
         if ($userId === null) {
-            return collect(null);
+            return collect([]);
         }
         return collect(Flashcard::where('user_id', $userId)->get());
     }
