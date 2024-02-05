@@ -1,30 +1,3 @@
-<?php
-
-use Livewire\Volt\Component;
-use Illuminate\Support\Facades\Log;
-
-new class extends Component {
-    public $question;
-    public $answer;
-    public $id;
-
-    public $showAnswer = false;
-
-    public function mount(string $question, string $answer, int $id)
-    {
-        $this->question = $question;
-        $this->answer = $answer;
-        $this->id = $id;
-    }
-
-    public function handleAnswer(bool $remembered)
-    {
-        $this-> showAnswer = false;
-        $this->dispatch('flashcardAnswered', $remembered, $this->id);
-    }
-
-}; ?>
-
 <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 w-96">
     <div class="flex flex-col my-6 space-y-4">
         <div class="text-lg font-semibold text-gray-800 dark:text-gray-200">{{ $question }}</div>
