@@ -13,7 +13,7 @@ class CreateFlashcardForm extends Component
     {
         $controller =  new FlashcardController();
         $controller->store(auth()->id(), $this->newQuestion, $this->newAnswer);
-        $this->dispatch('flashcard-created');
+        $this->dispatch('refresh-flashcards');
     }
     public function render()
     {
