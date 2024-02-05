@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use App\Http\Controllers\FlashcardController;
 use Livewire\Component;
+use Log;
+
+use function PHPUnit\Framework\isEmpty;
 
 class Flashcard extends Component
 {
-  public $flashcard;
+  public int $id = 0;
   public string $question = '';
   public string $answer = '';
 
@@ -15,14 +18,15 @@ class Flashcard extends Component
 
   public function mount($flashcard)
   {
-    $this->question = $flashcard->question;
-    $this->answer = $flashcard->answer;
+    $this->id = $flashcard['id'];
+    $this->question = $flashcard['question'];
+    $this->answer = $flashcard['answer'];
   }
 
   public function handleAnswer(bool $remembered)
   {
     $this->showAnswer = false;
-    $this->dispatch('flashcardAnswered', $remembered, $this->flashcard->id);
+    $this->dispatch('flashcardAnswered', $remembered, $this->id);
   }
 
   public function deleteFlashcard()
