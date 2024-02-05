@@ -18,6 +18,8 @@ class FlashcardApp extends Component
      */
     public Collection $flashcards;
 
+    public bool $loggedIn = false;
+
     protected FlashcardController $flashcard;
 
     public function __construct()
@@ -40,10 +42,11 @@ class FlashcardApp extends Component
     public function mount(): void
     {
         $this->getAllFlashcards();
+        $this->loggedIn = auth()->id() !== null;
     }
 
     public function render()
     {
-        return view('livewire.flashcard-app', ['flashcards' => $flashcards ?? []]);
+        return view('livewire.flashcard-app');
     }
 }
